@@ -10,6 +10,11 @@ class Student {
         System.out.println(st.name);
         System.out.println(st.name);
     }
+    public void updateStudent(Student st) {
+        Student.name = st.name;
+        System.out.println(st.name);
+    }
+
     public void addStudent(Student student) {
         ArrayList<Student> student = new ArrayList<>();
         System.out.println(student.name);
