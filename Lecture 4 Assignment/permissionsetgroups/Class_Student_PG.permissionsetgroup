@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This PG consists permission for class and student</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Class Student PG</label>
+    <permissionSets>Class_Object_Create_Related_Access</permissionSets>
+    <permissionSets>Student_Object_Delete_Related_Access</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>
