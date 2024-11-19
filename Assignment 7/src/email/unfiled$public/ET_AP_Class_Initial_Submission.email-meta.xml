@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This Email Template Is created during the Approcal process for initial Submission</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>ET AP Class Initial Submission</name>
+    <style>none</style>
+    <subject>Initial SUbmission</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
