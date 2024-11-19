@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RestrictionRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <description>This restriction rule for the users who have deartment of sales manager</description>
+    <enforcementType>Restrict</enforcementType>
+    <masterLabel>RR Training Session</masterLabel>
+    <recordFilter>RecordTypeId=&apos;012dM000003jqn7QAA&apos;</recordFilter>
+    <targetEntity>Training_Session__c</targetEntity>
+    <userCriteria>$User.Department=&apos;Sales&apos;</userCriteria>
+    <version>1</version>
+</RestrictionRule>
