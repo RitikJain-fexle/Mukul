@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Attendee__c.Email__c</members>
+        <members>Attendee__c.Phone__c</members>
+        <members>Attendee__c.Training_Session_1__c</members>
+        <members>Attendee__c.Training_Session__c</members>
+        <members>Feedback__c.Comments__c</members>
+        <members>Feedback__c.Rating_Picklist__c</members>
+        <members>Feedback__c.Rating__c</members>
+        <members>Feedback__c.Selected_Rating__c</members>
+        <members>Feedback__c.Training_Session_1__c</members>
+        <members>Feedback__c.Training_Session__c</members>
+        <members>Training_Session__c.Attendee_Count__c</members>
+        <members>Training_Session__c.Average_Ratings__c</members>
+        <members>Training_Session__c.Feedback_Sum__c</members>
+        <members>Training_Session__c.Location__c</members>
+        <members>Training_Session__c.Session_Date__c</members>
+        <members>Training_Session__c.Session_Mode__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Attendee__c</members>
+        <members>Feedback__c</members>
+        <members>Training_Session__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Attendee__c</members>
+        <members>Feedback__c</members>
+        <members>Training_Session__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Attendee__c-Attendee Layout</members>
+        <members>Feedback__c-Feedback Layout</members>
+        <members>Training_Session__c-Training Session Layout</members>
+        <members>Training_Session__c-Webinar Layout</members>
+        <members>Training_Session__c-Workshop Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Training_Session__c.Webinar_RT</members>
+        <members>Training_Session__c.Workshop</members>
+        <name>RecordType</name>
+    </types>
+    <types>
+        <members>Attendee__c.VR_Validate_Email</members>
+        <members>Training_Session__c.VR_Validate_Seesion_Date</members>
+        <name>ValidationRule</name>
+    </types>
+    <version>60.0</version>
+</Package>
