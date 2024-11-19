@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>This Rule consist rules for bypassing the validations, triggers, objects, flows</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Bypass_Flow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Bypass Flow</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Bypass Flow</inlineHelpText>
+        <label>Bypass Flow</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Bypass_Triggers__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is for Bypass Triggers</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Bypass Triggers</inlineHelpText>
+        <label>Bypass Triggers</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Bypass_Validation_Rules__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This Logic is for bypassing the validation rules</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Bypass Validations</inlineHelpText>
+        <label>Bypass Validation Rules</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Objects_to_Bypass__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Objects to Bypass</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Objects to Bypass</inlineHelpText>
+        <label>Objects to Bypass</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Bypass Logic</label>
+    <visibility>Public</visibility>
+</CustomObject>
