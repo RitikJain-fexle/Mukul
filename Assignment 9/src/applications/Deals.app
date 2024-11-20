@@ -39,6 +39,10 @@
     <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <label>Deals</label>
     <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>standard-MobileHome</tabs>
+    <tabs>standard-AppLauncher</tabs>
+    <tabs>standard-Opportunity</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Deals_UtilityBar</utilityBar>
 </CustomApplication>
