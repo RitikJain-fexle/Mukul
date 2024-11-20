@@ -22,5 +22,9 @@
         <members>Opportunity_StageName_Path</members>
         <name>PathAssistant</name>
     </types>
+    <types>
+        <members>Admin</members>
+        <name>Profile</name>
+    </types>
     <version>60.0</version>
 </Package>
