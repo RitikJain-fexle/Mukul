@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>The record is approved</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>ET AP Approved</name>
+    <style>none</style>
+    <subject>The record is approved</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

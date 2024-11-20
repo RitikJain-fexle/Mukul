@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Bank_Account__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Bank_Account__c-Bank Account Layout</members>
+        <members>Bank_Account__c-Employee Page Layout</members>
+        <members>Bank_Account__c-Manager Page Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Employee Profile</members>
+        <members>Manager Profile</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>Bank_Account__c.Employee_Record_Type</members>
+        <members>Bank_Account__c.Manager_Record_Type</members>
+        <name>RecordType</name>
+    </types>
+    <version>60.0</version>
+</Package>
