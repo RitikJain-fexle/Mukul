@@ -18,6 +18,9 @@ public without sharing class TrainingSessionManager {
     public TrainingSessionManager() {
 
     }
+    public void checkForSession() {
+        createTrainingSessions('Java 2', SessionsType.WEBINAR, Date.newInstance(2024, 12, 2), 'japan');
+    } 
 
     /*
      * @description: Creates a new Training_Session__c record.
@@ -43,7 +46,7 @@ public without sharing class TrainingSessionManager {
         trainingSessions.name = sessionName;
         trainingSessions.Session_Date__c = sessionDate;
         // Use of Enum
-        if (typeOfSession == TrainingSessionManager.SessionsType.WEBINAR) {
+        if (typeOfSession == SessionsType.WEBINAR) {
             trainingSessions.Location__c =  'Remote';
         } else {
             trainingSessions.Location__c =  location;
@@ -53,7 +56,6 @@ public without sharing class TrainingSessionManager {
             insert trainingSessions;
         } catch(DmlException e) {
             System.debug('Error Inserting traning sessions: ' + e.getMessage());
-            throw e;
         }
         return trainingSessions;
     }
@@ -72,7 +74,6 @@ public without sharing class TrainingSessionManager {
         
         } catch(Exception e) {
             System.debug('Error Reteriving the Sessions');
-			return new List<Training_Session__c>();
         }
         return trainingSessions;
     }
@@ -106,7 +107,6 @@ public without sharing class TrainingSessionManager {
             update trainingSessions;
         } catch(DmlException e) {
             System.debug('Error Updating traning sessions: ' + e.getMessage());
-            throw e;
         }
         return trainingSessions;
     }
@@ -163,12 +163,13 @@ public without sharing class TrainingSessionManager {
                 newAttendees.add(student);
             }
         }
-        
-        System.debug('@@@@@@@ pRINTING lSIT : '+  newAttendees);
+		System.debug('##### Size of new Records' + newAttendees.size() );
+        System.debug(newAttendees);
         try {
             //Implementation of safe navigation operators
             if (newAttendees?.size() > 0 && !newAttendees.isEmpty()) {
-                INSERT newAttendees;
+                upsert newAttendees;
+                System.debug('@@@@@@@ pRINTING lSIT : '+  newAttendees);
             }
         } catch(DmlException e) {
             System.debug('Error Inserting Records: ' + e.getMessage());
@@ -178,13 +179,13 @@ public without sharing class TrainingSessionManager {
 	/**
      * @description: Use to test addUniqueAttendeeToTrainingSession() method.
      */
-    public void makeAttendeeList() {
+    public void makeAttendeeList(String name, String email, String phone) {
         List<Attendee__c> attendeeList = [SELECT Id, Name FROM Attendee__c];
         System.debug('@@@ Before' + attendeeList.size());
         Attendee__c  attendee = new Attendee__c();
-        attendee.Name = 'ABC';
-        attendee.Email__c = 'mukulpichunia@gmail.com';
-        attendee.Phone__c = '1234545446';
+        attendee.Name = name;
+        attendee.Email__c = email;
+        attendee.Phone__c = phone;
         attendeeList.add(attendee);
         System.debug('##### : '+ attendeeList);
         addUniqueAttendeeToTrainingSession('a0GdM0000084MMPUA2', attendeeList);
@@ -240,13 +241,15 @@ public without sharing class TrainingSessionManager {
                 if (result.isSuccess()) {
                     System.debug('Status: ' + Status.Success + ', Record ID: ' + result.getId());
                 } else {
-                    for (Database.Error error : result.getErrors()) {
+                    
+                    /*for (Database.Error error : result.getErrors()) {
                         System.debug('Status: ' + Status.Failed + ', Error: ' + error.getMessage());
-                    }
+                    }*/
+                     System.debug(String.join(result.getErrors(), '\n'));
                 }
             
          	}
-        }
+       
     }
     /**
      * @description: Inserts a list of Training_Session__c records in bulk.
@@ -258,9 +261,11 @@ public without sharing class TrainingSessionManager {
             if (result.isSuccess()) {
                 System.debug('Status: ' + Status.Success + ', Record ID: ' + result.getId());
             } else {
-                for (Database.Error error : result.getErrors()) {
+                /*for (Database.Error error : result.getErrors()) {
                     System.debug('Status: ' + Status.Failed + ', Error: ' + error.getMessage());
-                }
+                }*/
+                
+                System.debug(String.join(result.getErrors(), '\n'));
             }
         }
     }
@@ -278,9 +283,10 @@ public without sharing class TrainingSessionManager {
             if (result.isSuccess()) {
                 System.debug('Status: ' + Status.Success + ', Record ID: ' + result.getId());
             } else {
-                for (Database.Error error : result.getErrors()) {
+                /*for (Database.Error error : result.getErrors()) {
                     System.debug('Status: ' + Status.Failed + ', Error: ' + error.getMessage());
-                }
+                }*/
+                 System.debug(String.join(result.getErrors(), '\n'));
             }
         }
     }
