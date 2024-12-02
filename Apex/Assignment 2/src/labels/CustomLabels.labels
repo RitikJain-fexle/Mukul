@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>NAME_MUST_NOT_EMPTY</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NAME_MUST_NOT_EMPTY</shortDescription>
+        <value>NAME_MUST_NOT_EMPTY</value>
+    </labels>
+    <labels>
+        <fullName>WEBINAR</fullName>
+        <categories>Custom messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WEBINAR</shortDescription>
+        <value>WELCOME_TO_WEBINAR</value>
+    </labels>
+    <labels>
+        <fullName>WORKSHOP</fullName>
+        <categories>Custom messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>WORKSHOP</shortDescription>
+        <value>WELCOME_TO_WORKSHOP</value>
+    </labels>
+</CustomLabels>

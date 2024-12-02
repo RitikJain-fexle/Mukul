@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>TrainingSessionManager</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>NAME_MUST_NOT_EMPTY</members>
+        <members>WEBINAR</members>
+        <members>WORKSHOP</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>Attendee__c</members>
+        <members>Training_Session__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Bypass_Validation</members>
+        <name>CustomPermission</name>
+    </types>
+    <types>
+        <members>Attendee__c.VR_Validate_Email</members>
+        <members>Training_Session__c.VR_Validate_Seesion_Date</members>
+        <name>ValidationRule</name>
+    </types>
+    <version>60.0</version>
+</Package>
