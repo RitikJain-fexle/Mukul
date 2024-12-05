@@ -5,6 +5,9 @@
  */
 public without sharing class ValidateDomains {
     public static void validateAccountAndContactDomains(List<Contact> contacts) {
+        if (contacts == null || contacts.isEmpty()) {
+            return; // No contacts to process
+        }
         Set<Id> accountIds = new Set<Id>();
                 for (Contact c2 : contacts) {
                     if (c2.AccountId != null) {
