@@ -31,7 +31,8 @@ public without sharing class ContactTriggerHandler {
       	 */
         List<Contact> newContacts = new List<Contact>();
         for (Contact c2 : contacts) {
-            if (c2.Email != contactOldMap.get(c2.Id).Email || c2.AccountId != contactOldMap.get(c2.Id).AccountId) {
+            if(contactOldMap == null || (contactOldMap!=null && (c2.Email != contactOldMap.get(c2.Id).Email
+                || c2.AccountId != contactOldMap.get(c2.Id).AccountId))) {
                 newContacts.add(c2);
             }
         }
@@ -57,16 +58,16 @@ public without sharing class ContactTriggerHandler {
                                                            WHERE ID IN :accountIds]);
         for (Contact c : contacts) {            
             if (c.AccountId != null) {
-                if (String.isNotEmpty(c.Email)) {
+                if (String.isNotEmpty(c.Email)) { // vs IsBlank
                     List<String> emailParts = c.Email.split('@'); //['mukul','gmail.com']
                         if (domainMap.containsKey(c.AccountId)) {
-                            if (!domainMap.get(c.AccountId).Domain_Name__c.equalsIgnoreCase(emailParts.get(1))) {
-                                c.Email.addError('Email domain must match the domain in the associated Account.');
-                            }
+                    if (domainMap.containsKey(c.AccountId)) {
+                        if (!domainMap.get(c.AccountId).Domain_Name__c.equalsIgnoreCase(emailParts.get(1))) {
+                            c.Email.addError('Email domain must match the domain in the associated Account.');
                         }
-                    
-                } 
-                
+                    }
+                        
+                }   
             } 
         }
     }

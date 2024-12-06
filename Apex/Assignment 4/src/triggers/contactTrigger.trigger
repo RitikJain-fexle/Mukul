@@ -12,13 +12,11 @@
 */
 trigger contactTrigger on Contact (before insert, before update) {
     if (trigger.isBefore) {
-        
-        if(trigger.isInsert) {
-            ContactTriggerHandler.validateAccountAndContactDomains(trigger.new);
-        }
-        
-        if(trigger.isUpdate) {
+        if(trigger.isInsert || trigger.isUpdate) {
             ContactTriggerHandler.validateAccountAndContactDomainsUpdate(trigger.new, trigger.oldMap);
         }
+        // if(trigger.isUpdate) {
+        //     ContactTriggerHandler.validateAccountAndContactDomainsUpdate(trigger.new, trigger.oldMap);
+        // }
     }
 }
