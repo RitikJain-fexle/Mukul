@@ -15,16 +15,17 @@ public without sharing class ContactTriggerHandler {
      * @return : void
      * @Param  : List<Contact>
      */
-    public static void validateAccountAndContactDomains(List<Contact> contacts) {
-        checkDomainWithEmail(contacts);
-    }
+    // TO REMOVE
+    // public static void validateAccountAndContactDomains(List<Contact> contacts) {
+    //     checkDomainWithEmail(contacts);
+    // }
     /**
      * Purpose : Method to validate Contacts Email With Account Domain 
      *           in case of new contact record is updated
      * @return : void
      * @Param  : List<Contact> contacts and Map<Id, Contact> contactOldMap
      */
-    public static void validateAccountAndContactDomainsUpdate(List<Contact> contacts, Map<Id, Contact> contactOldMap) {
+    public static void validateAccountAndContactDomainsInsertAndUpdate(List<Contact> contacts, Map<Id, Contact> contactOldMap) {
       	/* Old map can contain changed email ID or cannot contain Email Id and Can contain 
       	 * other changed email fields then Email Ids: What I have to check if oldMap have values changes in Email then i have to store 
       	 * it into list and call the method
@@ -60,13 +61,11 @@ public without sharing class ContactTriggerHandler {
             if (c.AccountId != null) {
                 if (String.isNotEmpty(c.Email)) { // vs IsBlank
                     List<String> emailParts = c.Email.split('@'); //['mukul','gmail.com']
-                        if (domainMap.containsKey(c.AccountId)) {
                     if (domainMap.containsKey(c.AccountId)) {
                         if (!domainMap.get(c.AccountId).Domain_Name__c.equalsIgnoreCase(emailParts.get(1))) {
                             c.Email.addError('Email domain must match the domain in the associated Account.');
                         }
-                    }
-                        
+                    } 
                 }   
             } 
         }
