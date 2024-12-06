@@ -31,7 +31,7 @@ public without sharing class ContactTriggerHandler {
       	 */
         List<Contact> newContacts = new List<Contact>();
         for (Contact c2 : contacts) {
-            if (c2.Email != contactOldMap.get(c2.Id).Email) {
+            if (c2.Email != contactOldMap.get(c2.Id).Email || c2.AccountId != contactOldMap.get(c2.Id).AccountId) {
                 newContacts.add(c2);
             }
         }
@@ -65,9 +65,7 @@ public without sharing class ContactTriggerHandler {
                             }
                         }
                     
-                } else {
-                    c.Email.addError('Enter Your Email Address');
-                }
+                } 
                 
             } 
         }
