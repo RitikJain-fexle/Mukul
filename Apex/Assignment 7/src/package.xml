@@ -4,6 +4,9 @@
         <members>AttendeeTriggerHandler</members>
         <members>AttendeeTriggerHelper</members>
         <members>AttendeeTriggerTest</members>
+        <members>ContactTriggerHandler</members>
+        <members>ContactTriggerHelper</members>
+        <members>ContactTriggerTest</members>
         <name>ApexClass</name>
     </types>
     <version>62.0</version>
