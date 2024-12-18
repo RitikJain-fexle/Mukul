@@ -16,16 +16,27 @@ public without sharing class ContactTriggerHelper extends TriggerHandler {
     
     public override void beforeUpdate() {
          ContactTriggerHandler.validateAccountAndContactDomainsInsertAndUpdate((List<Contact>) trigger.new, (Map<Id, Contact>) trigger.oldMap);
-    } 
+    }
 
     public override void afterInsert() {
+        	
           Set<Id> accountIds =  createContactSet((List<Contact>) trigger.new, (Map<Id, Contact>) trigger.oldMap);
-          AccountProcessor.countContacts(accountIds);
+            
+                AccountProcessor.countContacts(accountIds);
+            
+          
     }
 
     public override void afterUpdate() {
+        
           Set<Id> accountIds = createContactSet((List<Contact>) trigger.new, (Map<Id, Contact>) trigger.oldMap);
-          AccountProcessor.countContacts(accountIds);
+         
+        try {
+             AccountProcessor.countContacts(accountIds);
+        } catch(Exception e) {
+            System.debug(e.getMessage());
+        }
+      
     }
 
     public override void afterDelete() {
@@ -42,17 +53,22 @@ public without sharing class ContactTriggerHelper extends TriggerHandler {
      * Created Date : 17-12-2024
      */
     public static Set<Id> createContactSet(List<Contact> newList, Map<Id, Contact> oldMap) {
+       
           Set<Id> accountIds = new Set<Id>();
 
           for (Contact eachContact : newList != null ? newList : oldMap.values()) {
+              
                if (eachContact.AccountId != null) {
+                 	
                     accountIds.add(eachContact.AccountId);
                }
 
                if (oldMap != null && oldMap.get(eachContact.Id).AccountId != null && eachContact.AccountId != oldMap.get(eachContact.Id).AccountId) {
+                   
                     accountIds.add(oldMap.get(eachContact.Id).AccountId);
                }  
           }
+       		
           return accountIds;
           
     }

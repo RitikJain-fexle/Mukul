@@ -3,6 +3,7 @@
     <types>
         <members>AccountProcessor</members>
         <members>ContactTriggerHelper</members>
+        <members>ContactTriggerTest</members>
         <name>ApexClass</name>
     </types>
     <types>
