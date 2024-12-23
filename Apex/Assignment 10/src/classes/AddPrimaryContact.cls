@@ -1,5 +1,5 @@
 /*
- * Purpose 		: Queueable Apex class that inserts the same Contact for each Account for a specific state
+ * Purpose : Queueable Apex class that inserts the same Contact for each Account for a specific state
  * 
  * Created by	: Mukul Pichunia
  * 
