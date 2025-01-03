@@ -1,22 +1,24 @@
-/*Purpose: Class to validate the domains of Contacts' email addresses 
-*          against the associated Account's domain.
+/**Purpose		:	Class for Contact Trigger
 *
-* Created by: Mukul Pichunia
+ * Created by	:	Mukul Pichunia
 *
-* Created Date : 05-12-24
+ * Created Date	:	05-12-24
 *
-* Revision Log: V:1.1
+ * Revision Log	:	V:1.0
 */
 public without sharing class ContactTriggerHandler {
     
     /**
-* Purpose    : Method to validate Contacts Email With Account Domain 
-*              in case of new contact record is updated
-* Created by : Mukul Pichunia
-* @return    : void
-* @Param     : List<Contact> contacts and Map<Id, Contact> contactOldMap
-*/
-    
+	 * @description		:	Method to validate Contacts Email With Account Domain in case of new contact record is updated
+	 * 
+	 * Created by		:	Mukul Pichunia
+	 * 
+	 * @args			:	List<Contact> contacts and Map<Id, Contact> contactOldMap
+	 * 
+	 * @return			:	void
+	 * 
+	 * @revision Log	:	V1.1 - Created  - 05-12-24 - Developer Name - Mukul Pichunia
+     */
     public static void validateAccountAndContactDomainsInsertAndUpdate(List<Contact> contacts, Map<Id, Contact> contactOldMap) {
         
         Set<Id> accountIds = new Set<Id>();
@@ -30,21 +32,21 @@ public without sharing class ContactTriggerHandler {
         }
         
         if (!accountIds.isEmpty()) {
+
             Map<Id, Account> domainMap = new Map<Id, Account>([SELECT Id, Domain_Name__c 
                                                                FROM Account 
                                                                WHERE ID IN :accountIds]);
-            if (!domainMap.isEmpty()) {
-                for (Contact c : contacts) {         
-                    if (c.AccountId != null && String.isNotEmpty(c.Email) && !domainMap.isEmpty()) {
-                        List<String> emailParts = c.Email.split('@'); //['mukul','gmail.com']
-                        if (domainMap.containsKey(c.AccountId)) {
-                            if (!domainMap.get(c.AccountId).Domain_Name__c.equalsIgnoreCase(emailParts.get(1))) {
-                                c.Email.addError('Email domain must match the domain in the associated Account.');
-                            }
-                        } 
-                        
+            for (Contact c : contacts) {         
+                if (c.AccountId != null && String.isNotEmpty(c.Email) && !domainMap.isEmpty()) {
+                    
+                    List<String> emailParts = c.Email.split('@'); //['mukul','gmail.com']
+                    if (domainMap.containsKey(c.AccountId)) {
+                        if (!domainMap.get(c.AccountId).Domain_Name__c.equalsIgnoreCase(emailParts.get(1))) {
+                            c.Email.addError('Email domain must match the domain in the associated Account.');
+                        }
                     } 
-                }
+                    
+                } 
             }
         }
         
