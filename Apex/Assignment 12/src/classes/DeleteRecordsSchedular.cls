@@ -9,8 +9,16 @@
 *  Revision Logs   :  V1.0 - Created - Mukul Pichunia
 *
 **/
-public class DeleteRecordsSchedular implements Schedulable {
+public without sharing class DeleteRecordsSchedular implements Schedulable {
+    
+    @testVisible
     public static List<String> parameters = new List<String>();
+    
+    @testVisible
+    private List<SObject> customMetaDataRecords = new List<SObject>();
+    
+    @testVisible
+    private Id batchId = null;
     
     /**
      * 
@@ -25,8 +33,9 @@ public class DeleteRecordsSchedular implements Schedulable {
      * 
      **/
     public void execute(SchedulableContext ctx) {
-        List<SObject> customMetaDataRecords = [SELECT Developer_Name__c, Duration__c, Filter__c, Label__c FROM Archive_Config__mdt];
-        
+        customMetaDataRecords = [SELECT Developer_Name__c, Duration__c, Filter__c, Label__c FROM Archive_Config__mdt];
+        String query = '';
+       
         for (SObject result : customMetaDataRecords) {
             String name = (String) result.get('Developer_Name__c');
             String fields = getFields(name);
@@ -34,13 +43,13 @@ public class DeleteRecordsSchedular implements Schedulable {
             String filter = (String) result.get('Filter__c');
             String label = (String) result.get('Label__c');
             
-            String query = 'SELECT ' + fields + ' FROM ' + name + ' WHERE ' + filter + ' AND CreatedDate >= Last_N_Days:' + duration;
+            query = 'SELECT ' + fields + ' FROM ' + name + ' WHERE ' + filter + ' AND CreatedDate >= Last_N_Days:' + duration;
             System.debug('QUERY: ' + query);
             
-            Database.executeBatch(new DeleteRecordsBatch(query, parameters));
+            batchId = Database.executeBatch(new DeleteRecordsBatch(query, parameters));
         }
+         
     }
-    
     /**
      * 
      *   @description    :   Retrieves all fields of the given SObject and constructs a CSV.
@@ -57,6 +66,7 @@ public class DeleteRecordsSchedular implements Schedulable {
         Schema.DescribeSObjectResult describeResult = ((SObject) Type.forName(Name).newInstance()).getSObjectType().getDescribe();
         Map<String, Schema.SObjectField> fields = describeResult.fields.getMap();
         
+
         for (String fieldName : fields.keySet()) {
             Schema.DescribeFieldResult describeFieldResult = fields.get(fieldName).getDescribe();
             queryParameter += describeFieldResult.getName() + ',';

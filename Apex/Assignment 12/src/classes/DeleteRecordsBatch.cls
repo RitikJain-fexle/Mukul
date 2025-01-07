@@ -9,18 +9,28 @@
  *  Revision Logs   :  V1.0 - Created - Mukul Pichunia
  *
  **/
-global class DeleteRecordsBatch implements Database.Batchable<sObject> , Database.stateful{
+public without sharing class DeleteRecordsBatch implements Database.Batchable<sObject> , Database.stateful{
     
+    @testVisible
     public static String csv = '';
+    
+    @testVisible
     public static String csvHeaders = '';
-    public  String query = '';
+    
+    @testVisible
+    String query = '';
+    
+    @testVisible
     private List<String> parameter = new List<String>();
     private Blob csvBlob;
     
     public DeleteRecordsBatch(String query, List<String> parameter) {
-        
+        System.debug('@@@ Parameter' + parameter);
+         System.debug('@@@ query' + query);
         this.query = query;
         this.parameter = parameter;
+        System.debug('@@@ this.query ' + this.query );
+        System.debug('@@@ this.parameter' + this.parameter);
         
     }
     
@@ -35,9 +45,11 @@ global class DeleteRecordsBatch implements Database.Batchable<sObject> , Databas
      *   @revision Log   :   V1.0 - Created  - 03/01/2025 - Mukul Pichunia - Start logic implemented.
      * 
      **/
-    global Database.QueryLocator start(Database.BatchableContext ctx) {
-        
-        return Database.getQueryLocator(query);
+    
+    public Database.QueryLocator start(Database.BatchableContext ctx) {
+         Database.QueryLocator ql = Database.getQueryLocator(query);
+         System.debug('Check For ' + ql);
+        return ql;
     } 
     
      /**
@@ -53,7 +65,7 @@ global class DeleteRecordsBatch implements Database.Batchable<sObject> , Databas
      *   @revision Log   :   V1.0 - Created  - 03/01/2025 - Mukul Pichunia - Execute logic implemented.
      * 
      **/
-    global void execute(Database.BatchableContext ctsx, List<SObject> records) {
+    public void execute(Database.BatchableContext ctsx, List<SObject> records) {
         
         if (!records.isEmpty()) {
             
@@ -61,13 +73,7 @@ global class DeleteRecordsBatch implements Database.Batchable<sObject> , Databas
             
             csvBlob = Blob.valueOf(csv);
             
-            List<Account> accountsList = [SELECT Id FROM Account WHERE Name = 'Test' AND Domain_Name__c = 'fexle.com'];
-            
-            
-            
             delete records;
-            
-            List<Account> accounts = [SELECT Id FROM Account WHERE Name = 'Test' AND Domain_Name__c = 'fexle.com'];
             
         }
     }
@@ -83,7 +89,7 @@ global class DeleteRecordsBatch implements Database.Batchable<sObject> , Databas
      *   @revision Log   :   V1.0 - Created  - 03/01/2025 - Mukul Pichunia - Finish logic implemented.
      * 
      **/
-    global void finish(Database.BatchableContext ctx) {
+    public void finish(Database.BatchableContext ctx) {
         
         Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
         attachment.setFileName('csvfile.csv'); // Name of the file
