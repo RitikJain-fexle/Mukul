@@ -1,0 +1,23 @@
+<template>
+    
+    <lightning-card title="Component x" icon-name="standard:account" variant="base">
+      
+      <div class="slds-m-around_medium">
+        Message Recieved : {recievedMessage}
+      </div>
+
+      <div class="slds-m-around_medium">
+        <lightning-input 
+        type="text"
+        label="Enter some text" onkeyup={handleInputChange}
+      ></lightning-input>
+
+      <lightning-button 
+        variant="brand"
+        label="Button Label" 
+        onclick={publishMessage}
+      ></lightning-button>
+      </div>
+      
+    </lightning-card>
+</template>

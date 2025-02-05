@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This Lightning Message Channel sends information .</description>
+    <isExposed>true</isExposed>
+    <lightningMessageFields>
+        <description>This Field is used to pass the data</description>
+        <fieldName>lmsData</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This Field is used to subscribe the data</description>
+        <fieldName>lmsReceiver</fieldName>
+    </lightningMessageFields>
+    <masterLabel>SampleMessageChannel</masterLabel>
+</LightningMessageChannel>
