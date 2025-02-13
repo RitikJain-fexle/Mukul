@@ -1,0 +1,21 @@
+<template>
+    <lightning-card variant="Narrow" title="Parent Component" icon-name="standard:display_text">
+        <div class="slds-p-around_medium lgc-bg slds-text-body_small">
+            Hello, World!
+        </div>
+
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Enter some text" onchange={handleInputChange}></lightning-input>
+        </div>
+
+        <br/>
+        <c-child-component greeting={parentGreet}></c-child-component>
+        <br/>
+    </lightning-card>
+    <br/>
+    <c-child-component greeting={parentGreet} onsend={storeMessage}></c-child-component>
+    <br/>
+    <lightning-card variant="Narrow" title="Latest Message from the Child Component" icon-name="standard:display_text">
+        <p class="slds-p-left_small">{childMessage}</p>
+    </lightning-card>
+</template>
