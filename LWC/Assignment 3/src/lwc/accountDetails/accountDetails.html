@@ -1,0 +1,59 @@
+<template>
+ 
+    <lightning-card title="Account Information">
+        <lightning-record-view-form record-id={recordId} object-api-name="Account">
+            <div class="slds-grid slds-wrap slds-m-around_medium">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Name"></lightning-output-field>
+                </div>
+                <!-- <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Company"></lightning-output-field>
+                </div> -->
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Website"></lightning-output-field>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Phone"></lightning-output-field>
+                </div>
+            </div>
+        </lightning-record-view-form>
+    </lightning-card>
+
+    
+    <div class="slds-m-top_medium">
+        <lightning-button label="Create Contact" variant="brand" onclick={handleCreateContact}></lightning-button>
+    </div>
+
+    
+    <template if:true={showContactForm}>
+        <lightning-card title="Create New Contact" class="slds-m-top_medium">
+            <lightning-record-edit-form object-api-name="Contact" onsuccess={handleSuccess}>
+                
+                
+
+                <div class="slds-grid slds-wrap slds-m-around_medium">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name={accountId} value={recordId}></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name={firstName}></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name={lastName}></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name={phone}></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name={email}></lightning-input-field>
+                    </div>
+                </div>
+
+                <div class="slds-m-top_medium slds-align_absolute-center">
+                    <lightning-button type="submit" label="Save" variant="brand" ></lightning-button>
+                    <lightning-button label="Cancel" variant="neutral" class="slds-m-left_small" onclick={handleCancel}></lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </lightning-card>
+    </template>
+</template>
