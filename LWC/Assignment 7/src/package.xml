@@ -5,8 +5,15 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>Contact.isActive__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
         <members>accountManagerWizard</members>
         <members>accountWizardModal</members>
+        <members>constants</members>
+        <members>getPicklistValuesUIObjectInfoApi</members>
+        <members>showPickListCombobox</members>
         <name>LightningComponentBundle</name>
     </types>
     <version>62.0</version>
