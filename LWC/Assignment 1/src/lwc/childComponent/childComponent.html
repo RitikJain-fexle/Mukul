@@ -1,0 +1,15 @@
+<template>
+     <lightning-card variant="Narrow" title="This Is Child Component" icon-name="standard:display_text">
+        <p class="slds-p-left_small">{greeting}</p>
+    </lightning-card>
+    
+    <br/>
+    <lightning-card variant="Narrow" title="Send Messages to Parent Component" icon-name="standard:display_text">
+        <lightning-input class="slds-p-around_medium lgc-bg" type="text" variant="standard" name="name"
+            label="Child To Parent" placeholder="type here...">
+        </lightning-input>
+
+        <lightning-button class="slds-p-around_medium lgc-bg" variant="Neutral" label="Send To Parent"
+            title="Send To Parent" onclick={handleClick}></lightning-button>
+    </lightning-card>
+</template>
