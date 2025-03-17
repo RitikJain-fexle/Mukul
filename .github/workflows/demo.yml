@@ -1,0 +1,26 @@
+name: Update Apex Classes and Deploy
+'on':
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    paths-ignore:
+      - sfdx-project.json
+      - README.md
+      - docs/**
+jobs:
+  manupulate-meta-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Update Apex Classes
+        run: >
+          find ./force-app -type f -name "*.cls" -print0 | while IFS= read -r -d
+          '' file; do
+            sed -i 's/with sharing/without sharing/g' "$file"
+          done
+      - name: Show modified classes
+        run: |
+          git diff -- ./force-app/**/*.cls
